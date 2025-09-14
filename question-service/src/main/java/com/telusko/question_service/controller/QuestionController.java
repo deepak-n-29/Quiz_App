@@ -3,6 +3,8 @@ package com.telusko.question_service.controller;
 
 
 import com.telusko.question_service.model.Question;
+import com.telusko.question_service.model.QuestionWrapper;
+import com.telusko.question_service.model.Response;
 import com.telusko.question_service.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -36,4 +38,21 @@ public class QuestionController {
     public ResponseEntity<String> addMultipleQuestions(@RequestBody List<Question> questions){
         return questionService.addMultipleQuestions(questions);
     }
+
+    @GetMapping("generate")
+    public ResponseEntity<List<Integer>> getQuestionForQuiz(@RequestParam List<String> categories,
+                                                            @RequestParam Integer numQ){
+        return questionService.getQuestionsForQuiz(categories,numQ);
+    }
+
+    @PostMapping("getQuestions")
+    public ResponseEntity<List<QuestionWrapper>> getQuestionsFromId(@RequestBody List<Integer> questionIds){
+        return questionService.getQuestionsFromId(questionIds);
+    }
+
+    @PostMapping("getScore")
+    public ResponseEntity<Integer> getScore(@RequestBody List<Response> responses){
+        return questionService.getScore(responses);
+    }
+
 }
