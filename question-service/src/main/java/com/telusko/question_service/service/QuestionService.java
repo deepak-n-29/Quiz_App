@@ -23,8 +23,6 @@ public class QuestionService {
     @Autowired
     private ModelMapper modelMapper;
 
-
-
     public ResponseEntity<List<Question>> getAllQuestions() {
         try {
             return new ResponseEntity<>(questionDao.findAll(), HttpStatus.OK);
